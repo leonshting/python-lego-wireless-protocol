@@ -28,11 +28,11 @@ def hub_io_connected(sender, hub_io):
     if isinstance(hub_io, TrainMotor):
         hub_io.set_speed(100)
     if isinstance(hub_io, LMotor):
-        hub_io.set_speed(100)
-    if isinstance(hub_io, LMotor):
-        hub_io.set_speed(100)
+        for _ in range(10):
+            hub_io.set_speed(100)
     if isinstance(hub_io, XLMotor):
-        hub_io.set_speed(100)
+        for _ in range(10):
+            hub_io.set_speed(100)
     if isinstance(hub_io, LEDLight):
         hub_io.set_brightness(100)
 
