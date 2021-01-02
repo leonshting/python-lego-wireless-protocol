@@ -146,7 +146,7 @@ class Hub(gatt.Device):
         assert isinstance(message, bytes)
 
         length = len(message) + 2
-        message = bytes([0x02, 0x10, 0x00, 0x0f, 0x00, 0x0b, 0x00, 0x04, 0x00, 0x52, 0x0e, 0x00, length, 0x00]) + message
+        message = bytes([length, 0x00]) + message
         logger.info("Sending serialized message: %s", hexify(message))
         self.hub_characteristic.write_value(message)
 
