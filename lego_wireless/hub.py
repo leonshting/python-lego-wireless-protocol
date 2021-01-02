@@ -152,7 +152,7 @@ class Hub(gatt.Device):
 
     def parse_message(self, message):
         length = message[0]
-        logger.info("Parsing message: %r", message)
+        logger.info("Parsing message: %r", hexify(message))
         if not len(message) == length:
             logger.warning("Unexpected message length: %s", hexify(message))
             return
