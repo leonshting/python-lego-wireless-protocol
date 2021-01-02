@@ -12,7 +12,6 @@ from lego_wireless.enums import HubProperty
 from lego_wireless.enums import HubPropertyOperation
 from lego_wireless.enums import MessageType
 from lego_wireless.hub_io import HubIO
-from lego_wireless.hub_io import LEDLight
 from lego_wireless.hub_io import RGBLight
 from lego_wireless.hub_io import TrainMotor
 from lego_wireless.messages import HubAttachedIO
@@ -47,12 +46,6 @@ class Hub(gatt.Device):
     def train_motor(self):
         for hub_io in self.ports.values():
             if isinstance(hub_io, TrainMotor):
-                return hub_io
-
-    @property
-    def led_light(self):
-        for hub_io in self.ports.values():
-            if isinstance(hub_io, LEDLight):
                 return hub_io
 
     @property
