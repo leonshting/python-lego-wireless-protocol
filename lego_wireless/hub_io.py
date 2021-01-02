@@ -49,14 +49,12 @@ class LMotor(HubIO):
     io_type = IOType.LMotor
 
     def set_speed(self, value):
-        logger.info("Sending speed to LMotor on port %s: %s", self.port, value)
-
         self.hub.send_message(
             struct.pack(
                 "BBBBBBBBBBBB",
                 MessageType.PortOutput,
                 self.port,
-                0x11,
+                0x00,
                 0x0d,
                 0x10,
                 0x00,
@@ -79,7 +77,7 @@ class XLMotor(HubIO):
                 "BBBBBB",
                 MessageType.PortOutput,
                 self.port,
-                0x11,
+                0x00,
                 0x51,
                 0x00,
                 0x9c,
