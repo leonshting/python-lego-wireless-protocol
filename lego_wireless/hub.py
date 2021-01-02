@@ -162,6 +162,7 @@ class Hub(gatt.Device):
         except KeyError:
             logger.warning("Unexpected message type: %s %r", message_type, hexify(message))
         else:
+            logger.info('Message from %s', hexify(message[3:]))
             return message_cls.from_bytes(message[3:])
 
     @property
