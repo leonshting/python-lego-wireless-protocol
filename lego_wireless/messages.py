@@ -27,7 +27,11 @@ class HubAttachedIO(
         ):
             io_type_code = struct.unpack("<H", value[2:4])[0]
             logger.info("Parsed io type: %s", hex(io_type_code))
-            io_type = IOType(io_type_code)
+            try:
+                io_type = IOType(io_type_code)
+            except ValueError:
+                logger.error("Parsed io type: %s unknown", hex(io_type_code))
+                io_type = None
         else:
             io_type = None
         return cls(port=port, event=event, io_type=io_type)

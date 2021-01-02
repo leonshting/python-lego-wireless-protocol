@@ -24,6 +24,10 @@ class IOType(enum.IntEnum):
     Current = 0x0015
     PiezoTone = 0x0016
     RGBLight = 0x0017
+    TiltSensor = 0x0022
+    MotionSensor = 0x0023
+    VisionSensor = 0x0025
+    InternalTilt = 0x0028
 
 
 class HubAttachedIOEvent(enum.IntEnum):
