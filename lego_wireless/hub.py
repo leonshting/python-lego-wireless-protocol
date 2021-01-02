@@ -32,6 +32,8 @@ class Hub(gatt.Device):
         self._battery_level = None
         self._connected = False
 
+        self._name: typing.Optional[str] = None
+
     @property
     def battery_level(self):
         return self._battery_level
@@ -63,7 +65,7 @@ class Hub(gatt.Device):
         super().connect_succeeded()
         self._connected = True
         self.manager.hubs.add(self)
-        logger.info("[%s] Connected" % (self.mac_address))
+        logger.info("[%s] Connected" % self.mac_address)
 
     def connect_failed(self, error):
         super().connect_failed(error)
@@ -163,12 +165,9 @@ class Hub(gatt.Device):
 
     @property
     def name(self) -> typing.Optional[str]:
-        try:
-            return self._name
-        except AttributeError:
-            name = self._properties.Get("org.bluez.Device1", "Name")
-            self._name: typing.Optional[str] = name if name != DEFAULT_NAME else None
-            return self._name
+        name = self._properties.Get("org.bluez.Device1", "Name")
+        self._name = name or self._name
+        return self._name
 
     @name.setter
     def name(self, value: typing.Optional[str]):

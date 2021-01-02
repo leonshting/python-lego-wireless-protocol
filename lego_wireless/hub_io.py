@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import struct
 import typing
 
@@ -18,7 +16,7 @@ class HubIOMetaclass(type):
 
 class HubIO(metaclass=HubIOMetaclass):
     io_type: IOType
-    registry: typing.Dict[IOType, HubIO] = {}
+    registry: typing.Dict[IOType, typing.Any] = {}
 
     def __init__(self, hub, port):
         self.hub = hub
