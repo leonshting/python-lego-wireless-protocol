@@ -1,6 +1,7 @@
 import struct
 import typing
 import logging
+import time
 
 from .enums import ColorNo
 from .enums import IOType
@@ -73,7 +74,6 @@ class XLMotor(HubIO):
     io_type = IOType.XLMotor
 
     def set_speed(self, value):
-        import time
         time.sleep(1.0)
         self.hub.send_message(
             struct.pack(
