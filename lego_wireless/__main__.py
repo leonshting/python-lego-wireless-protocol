@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 def hub_discovered(sender, hub):
     if hub not in hubs_seen:
         hubs_seen.add(hub)
-        print("Connecting Hub IO, %s", hub.mac_address)
+        logger.info("Connecting Hub IO, %s", hub.mac_address)
         signals.hub_io_connected.connect(hub_io_connected, sender=hub)
         hub.connect()
 

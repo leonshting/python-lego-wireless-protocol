@@ -28,8 +28,8 @@ class IOType(enum.IntEnum):
     MotionSensor = 0x0023
     VisionSensor = 0x0025
     InternalTilt = 0x0028
-    LMotor = 0x002f
-    XLMotor = 0x002e
+    XLMotor = 0x002f
+    LMotor = 0x002e
 
 
 class HubAttachedIOEvent(enum.IntEnum):

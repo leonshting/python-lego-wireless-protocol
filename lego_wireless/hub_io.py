@@ -1,9 +1,12 @@
 import struct
 import typing
+import logging
 
 from .enums import ColorNo
 from .enums import IOType
 from .enums import MessageType
+
+logger = logging.getLogger(__name__)
 
 
 class HubIOMetaclass(type):
@@ -46,6 +49,8 @@ class LMotor(HubIO):
     io_type = IOType.LMotor
 
     def set_speed(self, value):
+        logger.info("Sending speed to LMotor on port %s: %s", self.port, value)
+
         self.hub.send_message(
             struct.pack(
                 "BBBBBBBB",
