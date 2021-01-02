@@ -53,7 +53,7 @@ class LMotor(HubIO):
 
         self.hub.send_message(
             struct.pack(
-                "BBBBBB",
+                "BBBBBBBBBBBB",
                 MessageType.PortOutput,
                 self.port,
                 0x11,
