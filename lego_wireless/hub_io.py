@@ -49,6 +49,7 @@ class LMotor(HubIO):
     io_type = IOType.LMotor
 
     def set_speed(self, value):
+        time.sleep(1.0)
         self.hub.send_message(
             struct.pack(
                 "BBBBBBBBBBBB",
@@ -56,11 +57,11 @@ class LMotor(HubIO):
                 self.port,
                 0x00,
                 0x0d,
-                0x10,
+                0x48,
                 0x00,
                 0x00,
                 0x00,
-                0x0f,
+                0x15,
                 0x64,
                 0x7e,
                 0x00,
