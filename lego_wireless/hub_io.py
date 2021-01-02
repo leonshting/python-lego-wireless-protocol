@@ -50,7 +50,7 @@ class LMotor(HubIO):
     io_type = IOType.LMotor
 
     def set_speed(self, value):
-        time.sleep(1.0)
+        time.sleep(0.1)
         self.hub.send_message(
             struct.pack(
                 "BBBBBBBBBBBB",
@@ -74,7 +74,7 @@ class XLMotor(HubIO):
     io_type = IOType.XLMotor
 
     def set_speed(self, value):
-        time.sleep(1.0)
+        time.sleep(0.1)
         self.hub.send_message(
             struct.pack(
                 "BBBBBB",
@@ -84,25 +84,6 @@ class XLMotor(HubIO):
                 0x51,
                 0x00,
                 0x9c,
-            )
-        )
-
-
-class LEDLight(HubIO):
-    io_type = IOType.LEDLight
-
-    def set_brightness(self, value):
-        self.hub.send_message(
-            struct.pack(
-                "BBBBBBBB",
-                MessageType.PortOutput,
-                self.port,
-                0x00,
-                0x60,
-                0x00,
-                value,
-                0x00,
-                0x00,
             )
         )
 

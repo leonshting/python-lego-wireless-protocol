@@ -31,8 +31,6 @@ def hub_io_connected(sender, hub_io):
         hub_io.set_speed(100)
     if isinstance(hub_io, XLMotor):
         hub_io.set_speed(100)
-    if isinstance(hub_io, LEDLight):
-        hub_io.set_brightness(100)
 
 
 def main():
