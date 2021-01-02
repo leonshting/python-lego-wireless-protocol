@@ -25,7 +25,9 @@ class HubAttachedIO(
             HubAttachedIOEvent.AttachedIO,
             HubAttachedIOEvent.AttachedVirtualIO,
         ):
-            io_type = IOType(struct.unpack("<H", value[2:4])[0])
+            io_type_code = struct.unpack("<H", value[2:4])[0]
+            logger.info("Parsed io type: %s, %s", hex(io_type_code))
+            io_type = IOType(io_type_code)
         else:
             io_type = None
         return cls(port=port, event=event, io_type=io_type)
