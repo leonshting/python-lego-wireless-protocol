@@ -86,7 +86,7 @@ class Hub(gatt.Device):
 
     def characteristic_value_updated(self, characteristic, value):
         super().characteristic_value_updated(characteristic, value)
-        logger.debug("[%s] Message received: %r", self.mac_address, value)
+        logger.debug("[%s] Message received: %r", self.mac_address, hexify(value))
         message = self.parse_message(value)
         logger.debug("[%s] Parsed message received: %r", self.mac_address, message)
         if isinstance(message, HubAttachedIO):
