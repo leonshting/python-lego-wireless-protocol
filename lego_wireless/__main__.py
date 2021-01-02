@@ -4,7 +4,6 @@ import threading
 
 from . import signals
 from .manager import HubManager
-from lego_wireless.hub_io import LEDLight
 from lego_wireless.hub_io import TrainMotor
 from lego_wireless.hub_io import LMotor
 from lego_wireless.hub_io import XLMotor
