@@ -10,6 +10,9 @@ from lego_wireless.hub_io import TrainMotor
 hubs_seen = set()
 
 
+logger = logging.getLogger(__name__)
+
+
 def hub_discovered(sender, hub):
     if hub not in hubs_seen:
         hubs_seen.add(hub)
@@ -19,7 +22,7 @@ def hub_discovered(sender, hub):
 
 
 def hub_io_connected(sender, hub_io):
-    print("Let's go!")
+    logger.info("IO connected: %s", hub_io.__class__.__name__)
     if isinstance(hub_io, TrainMotor):
         hub_io.set_speed(100)
     if isinstance(hub_io, LEDLight):
