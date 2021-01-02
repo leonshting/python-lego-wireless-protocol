@@ -88,7 +88,6 @@ class Hub(gatt.Device):
         logger.debug("[%s] Message received: %r", self.mac_address, value)
         message = self.parse_message(value)
         logger.debug("[%s] Parsed message received: %r", self.mac_address, message)
-        print(message)
         if isinstance(message, HubAttachedIO):
             if message.event in (
                 HubAttachedIOEvent.AttachedIO,
@@ -152,6 +151,7 @@ class Hub(gatt.Device):
 
     def parse_message(self, message):
         length = message[0]
+        logger.info("Parsing message: %r", message)
         if not len(message) == length:
             logger.warning("Unexpected message length: %r", message)
             return

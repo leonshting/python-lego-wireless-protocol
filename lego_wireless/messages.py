@@ -1,5 +1,7 @@
 import collections
+import logging
 import struct
+
 
 from .enums import ErrorCode
 from .enums import HubAttachedIOEvent
@@ -8,6 +10,8 @@ from .enums import HubPropertyOperation
 from .enums import IOType
 from .enums import MessageType
 
+logger = logging.getLogger(__name__)
+
 
 class HubAttachedIO(
     collections.namedtuple("HubAttachedIO", ("port", "event", "io_type"))
@@ -15,6 +19,7 @@ class HubAttachedIO(
     @classmethod
     def from_bytes(cls, value):
         port, event = struct.unpack("BB", value[:2])
+        logger.info("Parsed port and event: %s, %s", hex(port), hex(event))
         event = HubAttachedIOEvent(event)
         if event in (
             HubAttachedIOEvent.AttachedIO,
