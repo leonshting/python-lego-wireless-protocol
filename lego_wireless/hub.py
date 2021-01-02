@@ -18,6 +18,7 @@ from lego_wireless.hub_io import TrainMotor
 from lego_wireless.messages import HubAttachedIO
 from lego_wireless.messages import HubProperties
 from lego_wireless.messages import message_classes
+from lego_wireless.utils import hexify
 
 logger = logging.getLogger(__name__)
 
@@ -146,20 +147,20 @@ class Hub(gatt.Device):
 
         length = len(message) + 2
         message = bytes([0x02, 0x10, 0x00, 0x0f, 0x00, 0x0b, 0x00, 0x04, 0x00, 0x52, 0x0e, 0x00, length, 0x00]) + message
-        logger.info("Sending serialized message: %s", message.hex())
+        logger.info("Sending serialized message: %s", hexify(message))
         self.hub_characteristic.write_value(message)
 
     def parse_message(self, message):
         length = message[0]
         logger.info("Parsing message: %r", message)
         if not len(message) == length:
-            logger.warning("Unexpected message length: %s", message.hex())
+            logger.warning("Unexpected message length: %s", hexify(message))
             return
         message_type = MessageType(message[2])
         try:
             message_cls = message_classes[message_type]
         except KeyError:
-            logger.warning("Unexpected message type: %s %r", message_type, message)
+            logger.warning("Unexpected message type: %s %r", message_type, hexify(message))
         else:
             return message_cls.from_bytes(message[3:])
 
