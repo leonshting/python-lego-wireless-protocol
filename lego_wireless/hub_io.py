@@ -57,9 +57,9 @@ class LMotor(HubIO):
                 MessageType.PortOutput,
                 self.port,
                 0x00,
-                0x02,
-                0xff,
-                0xff,
+                0x07,
+                0xdd,
+                0x01,
             )
         )
 
@@ -74,9 +74,9 @@ class XLMotor(HubIO):
                 MessageType.PortOutput,
                 self.port,
                 0x00,
-                0x02,
-                0xff,
-                0xff,
+                0x07,
+                0xdd,
+                0x01,
             )
         )
 
