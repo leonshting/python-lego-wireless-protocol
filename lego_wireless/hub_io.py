@@ -58,7 +58,7 @@ class LMotor(HubIO):
                 self.port,
                 0x00,
                 0x07,
-                0xdd,
+                0x1d,
                 0x01,
             )
         )
@@ -75,7 +75,7 @@ class XLMotor(HubIO):
                 self.port,
                 0x00,
                 0x07,
-                0xdd,
+                0x1d,
                 0x01,
             )
         )
