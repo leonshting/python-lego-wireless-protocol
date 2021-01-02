@@ -6,6 +6,7 @@ from . import signals
 from .manager import HubManager
 from lego_wireless.hub_io import LEDLight
 from lego_wireless.hub_io import TrainMotor
+from lego_wireless.hub_io import LMotor
 
 hubs_seen = set()
 
@@ -24,6 +25,8 @@ def hub_discovered(sender, hub):
 def hub_io_connected(sender, hub_io):
     logger.info("IO connected: %s", hub_io.__class__.__name__)
     if isinstance(hub_io, TrainMotor):
+        hub_io.set_speed(100)
+    if isinstance(hub_io, LMotor):
         hub_io.set_speed(100)
     if isinstance(hub_io, LEDLight):
         hub_io.set_brightness(100)

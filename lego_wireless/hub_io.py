@@ -9,7 +9,7 @@ from .enums import MessageType
 class HubIOMetaclass(type):
     def __new__(mcs, name, bases, attrs):
         cls = type.__new__(mcs, name, bases, attrs)
-        if getattr(cls, "io_type", None):
+        if hasattr(cls, "io_type") and hasattr(cls, "registry"):
             cls.registry[cls.io_type] = cls
         return cls
 
@@ -25,6 +25,25 @@ class HubIO(metaclass=HubIOMetaclass):
 
 class TrainMotor(HubIO):
     io_type = IOType.TrainMotor
+
+    def set_speed(self, value):
+        self.hub.send_message(
+            struct.pack(
+                "BBBBBBBB",
+                MessageType.PortOutput,
+                self.port,
+                0x00,
+                0x60,
+                0x00,
+                value,
+                0x00,
+                0x00,
+            )
+        )
+
+
+class LMotor(HubIO):
+    io_type = IOType.LMotor
 
     def set_speed(self, value):
         self.hub.send_message(
