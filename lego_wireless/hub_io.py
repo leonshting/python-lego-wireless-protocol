@@ -53,7 +53,7 @@ class LMotor(HubIO):
 
         self.hub.send_message(
             struct.pack(
-                "BBBBBBBB",
+                "BBBBBB",
                 MessageType.PortOutput,
                 self.port,
                 0x00,
@@ -87,7 +87,7 @@ class LEDLight(HubIO):
     def set_brightness(self, value):
         self.hub.send_message(
             struct.pack(
-                "BBBBBB",
+                "BBBBBBBB",
                 MessageType.PortOutput,
                 self.port,
                 0x00,
