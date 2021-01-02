@@ -49,8 +49,8 @@ class TrainMotor(HubIO):
 class LMotor(HubIO):
     io_type = IOType.LMotor
 
-    def set_speed(self, value):
-        time.sleep(0.1)
+    def set_rotation_right(self):
+        time.sleep(1.0)
         self.hub.send_message(
             struct.pack(
                 "BBBBBBBBBBBB",
@@ -69,11 +69,45 @@ class LMotor(HubIO):
             )
         )
 
+    def set_rotation_left(self):
+        time.sleep(1.0)
+        self.hub.send_message(
+            struct.pack(
+                "BBBBBBBBBBBB",
+                MessageType.PortOutput,
+                self.port,
+                0x00,
+                0x0d,
+                0x38,
+                0x00,
+                0x00,
+                0x00,
+                0x0c,
+                0x64,
+                0x7e,
+                0x00,
+            )
+        )
+
+    def set_no_rotation(self):
+        time.sleep(1.0)
+        self.hub.send_message(
+            struct.pack(
+                "BBBBBBBBBBBB",
+                MessageType.PortOutput,
+                self.port,
+                0x00,
+                0x51,
+                0x00,
+                0x00,
+            )
+        )
+
 
 class XLMotor(HubIO):
     io_type = IOType.XLMotor
 
-    def set_speed(self, value):
+    def set_forward(self):
         time.sleep(1.0)
         self.hub.send_message(
             struct.pack(

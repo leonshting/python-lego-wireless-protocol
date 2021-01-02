@@ -27,9 +27,13 @@ def hub_io_connected(sender, hub_io):
     if isinstance(hub_io, TrainMotor):
         hub_io.set_speed(100)
     if isinstance(hub_io, LMotor):
-        hub_io.set_speed(100)
+        hub_io.set_no_rotation()
+        hub_io.set_rotation_left()
+        hub_io.set_no_rotation()
+        hub_io.set_rotation_right()
+        hub_io.set_no_rotation()
     if isinstance(hub_io, XLMotor):
-        hub_io.set_speed(100)
+        hub_io.set_forward()
 
 
 def main():
