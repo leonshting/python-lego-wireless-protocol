@@ -73,10 +73,10 @@ class XLMotor(HubIO):
                 "BBBBBB",
                 MessageType.PortOutput,
                 self.port,
+                0x11,
+                0x51,
                 0x00,
-                0x07,
-                0x1d,
-                0x01,
+                0xc1,
             )
         )
 

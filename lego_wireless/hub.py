@@ -146,14 +146,14 @@ class Hub(gatt.Device):
 
         length = len(message) + 2
         message = bytes([length, 0x00]) + message
-        logger.info("Sending serialized message: %r", message)
+        logger.info("Sending serialized message: %s", message.hex())
         self.hub_characteristic.write_value(message)
 
     def parse_message(self, message):
         length = message[0]
         logger.info("Parsing message: %r", message)
         if not len(message) == length:
-            logger.warning("Unexpected message length: %r", message)
+            logger.warning("Unexpected message length: %s", message.hex())
             return
         message_type = MessageType(message[2])
         try:
