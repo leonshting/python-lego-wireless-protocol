@@ -57,11 +57,9 @@ class LMotor(HubIO):
                 MessageType.PortOutput,
                 self.port,
                 0x00,
-                0x60,
-                0x00,
-                value,
-                0x00,
-                0x00,
+                0x02,
+                0xff,
+                0xff,
             )
         )
 
@@ -72,15 +70,13 @@ class XLMotor(HubIO):
     def set_speed(self, value):
         self.hub.send_message(
             struct.pack(
-                "BBBBBBBB",
+                "BBBBBB",
                 MessageType.PortOutput,
                 self.port,
                 0x00,
-                0x60,
-                0x00,
-                value,
-                0x00,
-                0x00,
+                0x02,
+                0xff,
+                0xff,
             )
         )
 
@@ -91,7 +87,7 @@ class LEDLight(HubIO):
     def set_brightness(self, value):
         self.hub.send_message(
             struct.pack(
-                "BBBBBBBB",
+                "BBBBBB",
                 MessageType.PortOutput,
                 self.port,
                 0x00,
